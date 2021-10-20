@@ -13,7 +13,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <netdb.h> 
+#include <netdb.h>
 #include <stdbool.h>
 
 #include "util.h"
@@ -61,7 +61,7 @@ void error(const char *msg)
 
 float calc_angle(float y1, float y2, int height) {
     float rely = y1 + height / 2 - y2;
-    rely /= height / 2.0; 
+    rely /= height / 2.0;
     return rely * MAX_ANGLE;
 }
 
@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
     }
     portno = atoi(argv[2]);
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0) 
+    if (sockfd < 0)
         error("ERROR opening socket");
     server = gethostbyname(argv[1]);
     if (server == NULL) {
@@ -96,12 +96,12 @@ int main(int argc, char* argv[]) {
     }
     bzero((char *) &serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
-    bcopy((char *)server->h_addr, 
+    bcopy((char *)server->h_addr,
          (char *)&serv_addr.sin_addr.s_addr,
          server->h_length);
     serv_addr.sin_port = htons(portno);
 
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) 
+    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0)
         error("ERROR connecting");
 
 //**************************************************************************************************************
@@ -183,7 +183,7 @@ int main(int argc, char* argv[]) {
                       SDL_Color SColor = {255, 127, 39};
 
                       sprintf(buffer, "%u", menuState);
-                      SDL_Texture *StartGame = renderText(buffer, "fonts/agentorange.ttf", SColor, 90, ren);
+                      SDL_Texture *StartGame = renderText(buffer, "fonts/typomoderno.ttf", SColor, 90, ren);
 
                       int width;
                       SDL_QueryTexture(StartGame, NULL, NULL, &width, NULL);
@@ -266,9 +266,9 @@ int main(int argc, char* argv[]) {
 
             // Display the score
             sprintf(buffer, "%d", p1.score);
-            SDL_Texture* p1score = renderText(buffer, "fonts/agentorange.ttf", whiteColor, 30, ren);
+            SDL_Texture* p1score = renderText(buffer, "fonts/typomoderno.ttf", whiteColor, 30, ren);
             sprintf(buffer, "%d", p2.score);
-            SDL_Texture* p2score = renderText(buffer, "fonts/agentorange.ttf", whiteColor, 30, ren);
+            SDL_Texture* p2score = renderText(buffer, "fonts/typomoderno.ttf", whiteColor, 30, ren);
 
             int width;
             SDL_QueryTexture(p1score, NULL, NULL, &width, NULL);
@@ -297,14 +297,14 @@ int main(int argc, char* argv[]) {
             start = end;
         }
 
-        sprintf(buffer, "JEDI-Client SDL-Pong    FPS: %.0f", fps);
+        sprintf(buffer, "Pong 2 - Client    FPS: %.0f", fps);
         SDL_SetWindowTitle(win, buffer);
         SDL_RenderPresent(ren);
 
                                 bzero(Messag,256);
                                 sprintf(Messag, "%u %u", KeyPress, menuState);
                                 n = write(sockfd,Messag,strlen(buffer));
-                                if (n < 0) 
+                                if (n < 0)
                                     error("ERROR writing to socket");
 
          bzero(Messag,256);
