@@ -296,9 +296,9 @@ int main(int argc, char* argv[]) {
 
         // Display the score
         sprintf(buffer, "%d", p1.score);
-        SDL_Texture* p1score = renderText(buffer, "fonts/agentorange.ttf", whiteColor, 30, ren);
+        SDL_Texture* p1score = renderText(buffer, "fonts/typomoderno.ttf", whiteColor, 30, ren);
         sprintf(buffer, "%d", p2.score);
-        SDL_Texture* p2score = renderText(buffer, "fonts/agentorange.ttf", whiteColor, 30, ren);
+        SDL_Texture* p2score = renderText(buffer, "fonts/typomoderno.ttf", whiteColor, 30, ren);
 
         int width;
         SDL_QueryTexture(p1score, NULL, NULL, &width, NULL);
@@ -314,7 +314,7 @@ int main(int argc, char* argv[]) {
             SDL_Color SColor = {255, 127, 39};
 
             sprintf(buffer, "%u", menuState);
-            SDL_Texture *StartGame = renderText(buffer, "fonts/agentorange.ttf", SColor, 90, ren);
+            SDL_Texture *StartGame = renderText(buffer, "fonts/typomoderno.ttf", SColor, 90, ren);
 
             int width;
             SDL_QueryTexture(StartGame, NULL, NULL, &width, NULL);
@@ -340,7 +340,7 @@ int main(int argc, char* argv[]) {
             start = end;
         }
 
-        sprintf(buffer, "JEDI-Server SDL-Pong    FPS: %.0f", fps);
+        sprintf(buffer, "Pong 2 - Server    FPS: %.0f", fps);
         SDL_SetWindowTitle(win, buffer);
         SDL_RenderPresent(ren);
 
